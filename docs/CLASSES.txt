@@ -1,0 +1,25 @@
+Classes and Exceptions
+======================
+
+.. currentmodule:: kcrw.nprapi
+
+StoryMapping
+------------
+
+.. autoclass:: StoryMapping
+    :members:
+    :undoc-members:
+
+    .. attribute:: data
+
+StoryAPI
+--------
+
+.. autoclass:: StoryAPI
+    :members:
+    :undoc-members:
+
+NPRError
+------------
+
+.. autoexception:: NPRError

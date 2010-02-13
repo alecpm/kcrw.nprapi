@@ -1,0 +1,102 @@
+.. kcrw.nprapi documentation master file, created by
+   sphinx-quickstart on Thu Feb 11 10:15:25 2010.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+=====================================================
+Documentation for `KCRW's`_ python `NPR API`_ library
+=====================================================
+:mod:`kcrw.nprapi` |release|
+----------------------------
+
+Introduction
+============
+
+.. module:: kcrw.nprapi
+.. moduleauthor:: `Alec Mitchell`_
+.. moduleauthor:: KCRW <webmaster@kcrw.org>
+.. developed for `KCRW`_ an NPR station in Santa
+   Monica, CA
+
+This is a very simple library for getting story data from the
+National Public Radio (NPR) `API`_.
+
+In order to use this API, you must register for an API key and comply
+with the API `Terms of Use`_.  In particular, the `NPR API`_ may only
+be used for **personal non-commercial use** or for **non-commercial
+use by a 501(c)(3) nonprofit corporation**.
+
+This package consists of two classes for retrieving data from the NPR
+content API, :class:`StoryMapping` and :class:`StoryAPI`.
+
+The :class:`StoryMapping` class provides a simple high level API for
+retrieving story data from `NPR`_ in the form of a data structure::
+
+    >>> from kcrw.nprapi import StoryMapping
+    >>> api = StoryMapping(MY_API_KEY)
+    >>> result = api.query(ids=1)  # The id 1 is a list of news stories
+    >>> type(result)
+    <type 'list'>
+ 
+The :class:`StoryAPI` class returns raw output from the NPR service in any
+of the available formats listed in:
+
+    .. data:: OUTPUT_FORMATS
+
+
+and described in the `NPR API input reference`_.  These include
+(*NPRML* (XML), *HTML*, *JSON*, *RSS*, ...). The :class:`StoryAPI`
+class is used as follows::
+
+    >>> from kcrw.nprapi import StoryAPI
+    >>> api = StoryAPI(MY_API_KEY, output_format='RSS')
+    >>> result = api.query(ids=(1,'5',234))
+    >>> type(result)
+    <type 'string'>
+
+The :meth:`query` method of both these classes takes a number of
+optional parameters, which are listed in:
+
+    .. data:: QUERY_TERMS
+
+and described in the `NPR API input reference`_.
+
+Additionally, this package provides an exception :exc:`NPRError` which
+is raised whenever the NPR API responds with an error message rather
+than data.
+
+Contents
+=========
+
+.. toctree::
+
+    docs/CLASSES
+    kcrw/nprapi/story
+    kcrw/nprapi/mapping
+    docs/HISTORY
+    docs/LICENSE
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+Credits
+-------
+
+Created by `Alec Mitchell`_ for `KCRW`_, an `NPR`_ station based in Santa
+Monica, California.
+
+.. _KCRW's: http://www.kcrw.com/
+.. _NPR API: http://www.npr.org/api/index
+.. _NPR: http://www.npr.org/
+.. _API: http://www.npr.org/api/index
+.. _Terms of Use: http://www.npr.org/api/apiterms.php
+.. _Alec Mitchell: mailto:apm13@columbia.edu
+.. _KCRW: http://www.kcrw.com/
+.. _NPR API input reference: http://www.npr.org/api/inputReference.php
+
+
+
