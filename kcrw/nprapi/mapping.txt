@@ -39,11 +39,11 @@ by looking at our custom opener::
 
     >>> result = api.query(1)
     >>> result
-    [{u'id': u'1234567', u'title': u'Some other title'}, {u'id': u'3456789', u'title': u'Some other title'}]
+    [{u'link': {u'api': u'http://...', u'html': u'http://...'}, u'id': u'1234567', u'title': u'Some other title'}, {u'link': {u'api': u'http://...', u'html': u'http://...'}, u'id': u'3456789', u'title': u'Some other title'}]
     >>> api.stories == result
     True
     >>> api.data
-    {u'version': u'0.93', u'list': {u'teaser': u'More Test Data', u'story': [{u'id': u'1234567', u'title': u'Some other title'}, {u'id': u'3456789', u'title': u'Some other title'}], u'title': u'Test Data'}}
+    {u'version': u'0.93', u'list': {u'teaser': u'More Test Data', u'story': [{u'link': {u'api': u'http://...', u'html': u'http://...'}, u'id': u'1234567', u'title': u'Some other title'}, {u'link': {u'api': u'http://...', u'html': u'http://...'}, u'id': u'3456789', u'title': u'Some other title'}], u'title': u'Test Data'}}
     >>> api.version
     u'0.93'
     >>> api.title

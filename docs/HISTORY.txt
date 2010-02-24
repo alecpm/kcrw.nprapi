@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.0b2 (Febuary 24, 2010)
+------------------------
+
+- Simplify structure of link elements when using the StoryMapping API.
+
+- Make it compatible with Python 2.4 and 2.5 (you will need to install
+  cElementTree and simplejson)
+
+
 1.0b1 (Febuary 12, 2010)
 ------------------------
 

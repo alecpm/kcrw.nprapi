@@ -1,7 +1,11 @@
 import logging
 from urllib2 import build_opener
 from urllib import quote_plus
-from xml.etree.ElementTree import fromstring
+# Some exception handling to support both python 2.4 and 2.5+
+try:
+    from xml.etree.cElementTree import fromstring
+except ImportError:
+    from cElementTree import fromstring
 try:
     from json import loads
 except ImportError:
@@ -172,7 +176,10 @@ class StoryMapping(object):
         entries with values of the form {'$text': ...}; this is not
         desirable, so we replace these single item dictionaries with
         the text value alone.  Entries with multiple item dictionaries
-        will still have a '$text' key.
+        will still have a '$text' key.  Additionally, the 'link'
+        elements can be better represented as a mapping with the
+        'type' as the key, than a list of dicts with type and $text
+        keys.
 
         This modifies mutable data-structures in-place.
         """
@@ -186,6 +193,13 @@ class StoryMapping(object):
                     data[item] = value['$text']
                 elif keys:
                     self._process_data(value)
+                elif isinstance(value, list) and item == 'link':
+                    # Lists of links are structured in an almost useless manner.
+                    # Turn them into a sensible mapping
+                    links = {}
+                    for link in value:
+                        links[link['type']] = link['$text']
+                    data[item] = links
                 elif isinstance(value, list):
                     self._process_data(value)
         elif isinstance(data, list):

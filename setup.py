@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b'
+version = '1.0b2'
 
 setup(name='kcrw.nprapi',
       version=version,

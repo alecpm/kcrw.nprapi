@@ -26,6 +26,12 @@ with the API `Terms of Use`_.  In particular, the `NPR API`_ may only
 be used for **personal non-commercial use** or for **non-commercial
 use by a 501(c)(3) nonprofit corporation**.
 
+If you require **Python < 2.6** then you will need the ``simplejson`` 
+package.
+ 
+If you require **Python < 2.5** then you will need the ``cElementTree`` 
+package.
+
 This package consists of two classes for retrieving data from the NPR
 content API, :class:`StoryMapping` and :class:`StoryAPI`.
 

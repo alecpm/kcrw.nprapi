@@ -1,10 +1,14 @@
-from urlparse import urlsplit, parse_qs
+from urlparse import urlsplit
 from StringIO import StringIO
 from kcrw.nprapi.story import NPRError
 try:
     from json import dumps
 except ImportError:
     from simplejson import dumps
+try:
+    from urlparse import parse_qs
+except ImportError:
+    from cgi import parse_qs
 
 # We have mock responses for ids 1, 1234567 and 3456789 in both NPRML
 # and JSON formats, as well as an error response, which is always in
@@ -14,9 +18,17 @@ MOCK_RESPONSES = {
                 "list": {"title": {"$text": u"Test Data"},
                          "teaser": {"$text": u"More Test Data"},
                          "story": [{"id": u"1234567",
-                                    "title": {"$text": u"Some other title"}},
+                                    "title": {"$text": u"Some other title"},
+                                    "link": [{"type": "html",
+                                              "$text": u"http://..."},
+                                             {"type": "api",
+                                              "$text": u"http://..."}]},
                                    {"id": u"3456789",
-                                    "title": {"$text": u"Some other title"}},
+                                    "title": {"$text": u"Some other title"},
+                                    "link": [{"type": u"html",
+                                              "$text": "http://..."},
+                                             {"type": "api",
+                                              "$text": u"http://..."}]},
                                    ]
                          }
                 }),

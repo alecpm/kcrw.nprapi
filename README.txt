@@ -10,6 +10,12 @@ with the API `Terms of Use`_.  In particular, the `NPR API`_ may only
 be accessed for personal non-commercial use or for non-commercial use by a
 nonprofit 501(c)(3) corporation.
 
+If you require **Python < 2.6** then you will need the ``simplejson`` 
+package.
+ 
+If you require **Python < 2.5** then you will need the ``cElementTree`` 
+package.
+ 
 For more details, please see the `package documentation`_.
 
 Credits
