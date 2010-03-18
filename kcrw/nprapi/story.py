@@ -196,10 +196,12 @@ class StoryMapping(object):
                 elif isinstance(value, list) and item == 'link':
                     # Lists of links are structured in an almost useless manner.
                     # Turn them into a sensible mapping
-                    links = {}
-                    for link in value:
-                        links[link['type']] = link['$text']
-                    data[item] = links
+                    entries = set(value[0].keys())
+                    if entries == set(('type', '$text')):
+                        links = {}
+                        for link in value:
+                            links[link['type']] = link['$text']
+                        data[item] = links
                 elif isinstance(value, list):
                     self._process_data(value)
         elif isinstance(data, list):
